@@ -16,22 +16,32 @@ public:
 //      next->next = head;
 //      return next;
 //    }
+//    ListNode* swapPairs(ListNode* head) {
+//      ListNode* curr = head;
+//      head = new ListNode(-1);
+//      head->next = curr;
+//      ListNode* prev = head;
+//      while(curr!=NULL && curr->next!=NULL){
+//        ListNode* next = curr->next;
+//        ListNode* tail = next->next;
+//        curr->next = tail;
+//        next->next = curr;
+//        prev->next = next;
+//        curr=tail;
+//        prev=next->next;
+//      }
+//      ListNode* res = head->next;
+//      delete head;
+//      return res;
+//    }
     ListNode* swapPairs(ListNode* head) {
-      ListNode* curr = head;
-      head = new ListNode(-1);
-      head->next = curr;
-      ListNode* prev = head;
-      while(curr!=NULL && curr->next!=NULL){
-        ListNode* next = curr->next;
-        ListNode* tail = next->next;
-        curr->next = tail;
-        next->next = curr;
-        prev->next = next;
-        curr=tail;
-        prev=next->next;
+      ListNode **p = &head, *a, *b;
+      while((a=*p) && (b=a->next)){
+        a->next = b->next;
+        b->next = a;
+        *p = b;
+        p = &(a->next);
       }
-      ListNode* res = head->next;
-      delete head;
-      return res;
+      return head;
     }
 };
