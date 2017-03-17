@@ -4,7 +4,32 @@
 int guess(int num);
 
 class Solution {
-public:
+  public:
+    int guessNumber(int n) {
+      long long l = 1, r = n;
+      int mid;
+      while(l<r){
+        mid = (l+r)/2;
+        if(guess(mid)==1){
+          l = mid + 1;
+        }
+        else{
+          r = mid;
+        }
+      }
+      return l;
+    }
+};
+
+// i.   given l<r and floor truncation, mid is in [l,r-1]
+//      caution: this is not guaranteed if l=r, that's why condition in while loop should be l<r
+// ii.  the result [l,mid], [mid+1,r] ensures the size of problem shrinks
+//      caution: mid in range [l,r-1] ensures the result [l,mid] and [mid+1,r] is a legal interval
+// iii. combining i. and ii., there must be a moment when [l,r], l=r
+
+
+class Solution {
+  public:
     int guessNumber(int n) {
       long long l = 1, r = n;
       int status;
