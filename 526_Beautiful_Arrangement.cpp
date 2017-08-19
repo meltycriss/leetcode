@@ -40,7 +40,12 @@ public:
       return count;
     }
     // optimize:
-    //    online solving valid matching indicator: v
+    //    1. online solving valid matching indicator: v
+    //    2. directly use assignment vector(vector<int>) to indicate which pos is used(vector<bool>) by swapping
+    //        assignment vector<int> assign, assign[i]=k means number i is assigned to pos k
+    //        1: 1, 2, 3, 4 //if 1 is assign to pos 4
+    //        2: 4, 2, 3, 1 //if 2 is assign to pos 3
+    //        3: 4, 3, 2, 1
     // other method:
     //    here the idea is number-based, i.e. assign number to pos (we recur based on i)
     //    another idea is pos-based, i.e. recur based on pos
